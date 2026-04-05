@@ -1010,100 +1010,114 @@
         }
       });
 
-      function formatDuration(seconds) {
-        if (!Number.isFinite(seconds) || seconds <= 0) {
-          return "loading";
+      // Per-file manual duration overrides (seconds).
+      // Keys should match the media src path in the page.
+      var manualDurationMap = {
+        "./example/video/1.mp4": 32.04,
+        "./example/fixed/ldm/1.wav": 10.24,
+        "./example/fixed/tango/1.wav": 10.24,
+        "./example/fixed/sao/1.wav": 10.00,
+        "./example/fixed/genau/1.wav": 9.60,
+        "./example/fixed/valag/1.wav": 10.24,
+        "./example/fixed/ldm/2.wav": 10.24,
+        "./example/fixed/tango/2.wav": 10.24,
+        "./example/fixed/sao/2.wav": 10.00,
+        "./example/fixed/genau/2.wav": 9.60,
+        "./example/fixed/valag/2.wav": 10.24,
+        "./example/fixed/ldm/3.wav": 10.24,
+        "./example/fixed/tango/3.wav": 10.24,
+        "./example/fixed/sao/3.wav": 10.00,
+        "./example/fixed/genau/3.wav": 9.60,
+        "./example/fixed/valag/3.wav": 10.24,
+        "./example/fixed/ldm/4.wav": 10.24,
+        "./example/fixed/tango/4.wav": 10.24,
+        "./example/fixed/sao/4.wav": 10.00,
+        "./example/fixed/genau/4.wav": 9.60,
+        "./example/fixed/valag/4.wav": 10.24,
+        "./example/fixed/ldm/5.wav": 10.24,
+        "./example/fixed/tango/5.wav": 10.24,
+        "./example/fixed/sao/5.wav": 10.00,
+        "./example/fixed/genau/5.wav": 9.60,
+        "./example/fixed/valag/5.wav": 10.24,
+
+        "./example/variable/gt/1.wav": 60.00,
+        "./example/variable/ldm/1.wav": 30.72,
+        "./example/variable/tango/1.wav": 29.95,
+        "./example/variable/sao/1.wav": 47.00,
+        "./example/variable/valag/1.wav": 60.00,
+        "./example/variable/gt/2.wav": 50.55,
+        "./example/variable/ldm/2.wav": 30.72,
+        "./example/variable/tango/2.wav": 29.95,
+        "./example/variable/sao/2.wav": 47.00,
+        "./example/variable/valag/2.wav": 51.00,
+        "./example/variable/gt/3.wav": 60.00,
+        "./example/variable/ldm/3.wav": 30.72,
+        "./example/variable/tango/3.wav": 29.95,
+        "./example/variable/sao/3.wav": 47.00,
+        "./example/variable/valag/3.wav": 60.00,
+        "./example/variable/gt/4.wav": 57.89,
+        "./example/variable/ldm/4.wav": 30.72,
+        "./example/variable/tango/4.wav": 29.95,
+        "./example/variable/sao/4.wav": 47.00,
+        "./example/variable/valag/4.wav": 58.00,
+      };
+
+      var defaultManualDuration = 10.00;
+
+      function getMediaDeclaredSrc(media) {
+        if (media.getAttribute("src")) {
+          return media.getAttribute("src");
         }
 
-        return seconds.toFixed(2) + " s";
+        var sourceEl = media.querySelector("source[src]");
+        if (sourceEl) {
+          return sourceEl.getAttribute("src");
+        }
+
+        return "";
       }
 
-      function getBestKnownDuration(media) {
-        if (Number.isFinite(media.duration) && media.duration > 0) {
-          return media.duration;
+      function normalizeMediaPath(path) {
+        var raw = String(path || "").trim();
+        if (!raw) {
+          return "";
         }
 
-        if (media.seekable && media.seekable.length > 0) {
-          var seekableEnd = media.seekable.end(media.seekable.length - 1);
-          if (Number.isFinite(seekableEnd) && seekableEnd > 0) {
-            return seekableEnd;
-          }
+        if (raw.indexOf(window.location.origin) === 0) {
+          raw = raw.slice(window.location.origin.length);
         }
 
-        if (media.ended && Number.isFinite(media.currentTime) && media.currentTime > 0) {
-          return media.currentTime;
+        if (raw.charAt(0) === "/") {
+          raw = "." + raw;
         }
 
-        return NaN;
+        return raw;
+      }
+
+      function getManualDurationForMedia(media) {
+        var declaredSrc = getMediaDeclaredSrc(media);
+        var normalizedSrc = normalizeMediaPath(declaredSrc);
+
+        if (
+          Object.prototype.hasOwnProperty.call(manualDurationMap, normalizedSrc) &&
+          Number.isFinite(manualDurationMap[normalizedSrc])
+        ) {
+          return manualDurationMap[normalizedSrc];
+        }
+
+        return defaultManualDuration;
       }
 
       var mediaElements = document.querySelectorAll("audio, video");
 
       mediaElements.forEach(function (media) {
-        media.preload = "metadata";
+        media.preload = "none";
 
         var durationEl = document.createElement("span");
         durationEl.className = "media-duration";
-        durationEl.textContent = "Duration: loading";
+        var manualDuration = getManualDurationForMedia(media);
+        durationEl.textContent = "Duration: " + manualDuration.toFixed(2) + " s";
         media.insertAdjacentElement("afterend", durationEl);
-
-        var fallbackTimer = null;
-        var hasFinalDuration = false;
-
-        function isDurationReady() {
-          return Number.isFinite(getBestKnownDuration(media));
-        }
-
-        function stopFallbackTimer() {
-          if (fallbackTimer !== null) {
-            clearTimeout(fallbackTimer);
-            fallbackTimer = null;
-          }
-        }
-
-        function detachDurationListeners() {
-          media.removeEventListener("loadedmetadata", updateDuration);
-          media.removeEventListener("durationchange", updateDuration);
-          media.removeEventListener("loadeddata", updateDuration);
-          media.removeEventListener("canplay", updateDuration);
-          media.removeEventListener("ended", updateDuration);
-        }
-
-        function updateDuration() {
-          if (hasFinalDuration) {
-            return;
-          }
-
-          var bestDuration = getBestKnownDuration(media);
-          if (Number.isFinite(bestDuration) && bestDuration > 0) {
-            durationEl.textContent = "Duration: " + formatDuration(bestDuration);
-            hasFinalDuration = true;
-            stopFallbackTimer();
-            detachDurationListeners();
-          } else {
-            durationEl.textContent = "Duration: loading";
-          }
-        }
-
-        media.addEventListener("loadedmetadata", updateDuration);
-        media.addEventListener("durationchange", updateDuration);
-        media.addEventListener("loadeddata", updateDuration);
-        media.addEventListener("canplay", updateDuration);
-        media.addEventListener("ended", updateDuration);
-
-        fallbackTimer = setTimeout(function () {
-          if (!hasFinalDuration && !isDurationReady()) {
-            durationEl.textContent = "Duration: unavailable (host metadata blocked)";
-            detachDurationListeners();
-            stopFallbackTimer();
-          }
-        }, 15000);
-
-        if (media.readyState >= 1) {
-          updateDuration();
-        } else {
-          durationEl.textContent = "Duration: loading";
-        }
       });
     })();
   </script>
