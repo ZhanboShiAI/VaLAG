@@ -1012,7 +1012,7 @@
 
       function formatDuration(seconds) {
         if (!Number.isFinite(seconds) || seconds <= 0) {
-          return "-- s";
+          return "loading";
         }
 
         return seconds.toFixed(2) + " s";
@@ -1025,18 +1025,42 @@
 
         var durationEl = document.createElement("span");
         durationEl.className = "media-duration";
-        durationEl.textContent = "Duration: loading...";
+        durationEl.textContent = "Duration: loading";
         media.insertAdjacentElement("afterend", durationEl);
 
+        var pollTimer = null;
+
+        function isDurationReady() {
+          return Number.isFinite(media.duration) && media.duration > 0;
+        }
+
+        function stopPolling() {
+          if (pollTimer !== null) {
+            clearInterval(pollTimer);
+            pollTimer = null;
+          }
+        }
+
         function updateDuration() {
-          durationEl.textContent = "Duration: " + formatDuration(media.duration);
+          if (isDurationReady()) {
+            durationEl.textContent = "Duration: " + formatDuration(media.duration);
+            stopPolling();
+          } else {
+            durationEl.textContent = "Duration: loading";
+          }
         }
 
         media.addEventListener("loadedmetadata", updateDuration);
         media.addEventListener("durationchange", updateDuration);
 
+        pollTimer = setInterval(function () {
+          updateDuration();
+        }, 1000);
+
         if (media.readyState >= 1) {
           updateDuration();
+        } else {
+          durationEl.textContent = "Duration: loading";
         }
       });
     })();
