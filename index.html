@@ -1,108 +1,1078 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.66.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css"
+    />
+    <!-- <link rel="stylesheet" href="../css/normalize.css"> -->
+    <!-- <link rel="stylesheet" href="../css/skeleton.css"> -->
+    <!-- <link rel="stylesheet" href="../css/custom.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="alternate"
+      href="index.xml"
+      type="application/rss+xml"
+      title="Speech Research"
+    />
+    <!-- <link rel="shortcut icon" href="favicon.png" type="image/x-icon" /> -->
+    <title>VaLAG</title>
+    <style>
+      figcaption {
+        color: inherit;
+        font-size: inherit;
+        font-family: inherit;
+      }
+      table {
+        font-family: inherit;
+        font-size: inherit;
+      }
+      thead {
+        background-color: inherit;
+        border-bottom: inherit;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .container {
+        color: #061e61;
+      }
+      .media-duration {
+        display: block;
+        margin-top: 6px;
+        font-size: 14px;
+        color: #3d4d7a;
+      }
+      .comparison-table {
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+      }
+      .comparison-table thead th {
+        font-size: 17px;
+        text-align: center;
+        vertical-align: middle;
+        border-top: none;
+        border-bottom: 2px solid #d8e0f2;
+        background: #f7f9ff;
+        color: #0e2a70;
+      }
+      .comparison-table tbody td {
+        vertical-align: middle;
+        padding: 14px 10px;
+        border-top: 1px solid #e2e8f5;
+        background: #fcfdff;
+      }
+      .comparison-table tbody td:not(:first-child) {
+        text-align: center;
+      }
+      .comparison-table .desc-cell {
+        width: 30%;
+        text-align: left;
+        font-size: 18px;
+        line-height: 1.45;
+        color: #061e61;
+      }
+      .comparison-table .desc-main {
+        display: block;
+        margin-bottom: 8px;
+      }
+      .comparison-table .desc-main.is-compact {
+        margin-bottom: 10px;
+      }
+      .comparison-table .desc-compact {
+        background: #f5f8ff;
+        border: 1px solid #dbe4fb;
+        border-radius: 8px;
+        padding: 8px;
+      }
+      .comparison-table .desc-compact-text {
+        display: block;
+        font-size: 16px;
+        line-height: 1.45;
+        color: #0f2763;
+        min-height: 46px;
+        margin-bottom: 8px;
+      }
+      .comparison-table .desc-compact-controls {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .comparison-table .desc-control-btn {
+        border: 1px solid #b8c8ee;
+        background: #ffffff;
+        color: #1a3f90;
+        border-radius: 4px;
+        padding: 1px 8px;
+        line-height: 1.2;
+        cursor: pointer;
+      }
+      .comparison-table .desc-control-btn:hover {
+        background: #edf2ff;
+      }
+      .comparison-table .desc-index {
+        font-size: 12px;
+        color: #4762a0;
+        white-space: nowrap;
+      }
+      .comparison-table .desc-select {
+        flex: 1 0 100%;
+        min-width: 0;
+        max-width: 100%;
+        border: 1px solid #b8c8ee;
+        border-radius: 4px;
+        background: #fff;
+        color: #1a3f90;
+        font-size: 12px;
+        padding: 2px 4px;
+        margin-top: 2px;
+      }
+      .comparison-table .desc-meta {
+        display: inline-block;
+        font-size: 14px;
+        line-height: 1.3;
+        color: #344a83;
+        background: #eef3ff;
+        border-left: 3px solid #93a8df;
+        border-radius: 6px;
+        padding: 6px 8px;
+      }
+      .comparison-table audio {
+        width: 100%;
+        max-width: 180px;
+      }
+      .comparison-table .media-duration {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-1L0CH6TQKH"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
+    gtag("config", "G-1L0CH6TQKH");
+  </script>
 
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <title>ReliableNav</title>
-  <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet"> -->
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-</head>
-<body>
-
-
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title">VaLAG: A Fine-Grained Benchmark and an Autoregressive Diffusion Model for Variable-Length Audio Generation</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <!-- <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span> -->
-                  <p>Submitted to ACM Multimedia, 2026</p>
-                  </div>
-
-                  <!-- <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div> -->
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-                  <!-- Github link -->
-                  <span class="link-block">
-                    <!-- <a href="#" onclick="alert('Comming soon!')" class="external-link button is-normal is-rounded is-dark"> -->
-                    <a href="https://anonymous.4open.science/r/" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- ArXiv abstract Link -->
-                <!-- <span class="link-block">
-                  <a href="#" onclick="alert('Comming soon!')" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> -->
+  <font size="5">
+    <div class="container">
+      <header role="banner"></header>
+      <main role="main">
+        <article itemscope itemtype="https://schema.org/BlogPosting">
+          <br />
+          <h1 itemprop="headline" align="center">
+            <font color="000093" size="7">
+                VaALG: A Fine-Grained Benchmark and an Autoregressive Diffusion Model for Variable-Length Audio Generation
+            </font>
+          </h1>
+          <br />
+          <p style="line-height: 1" align="center">
+            <b>
+              ACM MM 2026 Submission 4619
+            </b>
+          </p>
+          
+          <section itemprop="entry-text">
+            <br />
+            <div class="container">
+              <center>
+                <p>
+                </p>
+              </center>
             </div>
-          </div>
-        </div>
-      </div>
+            <h2 id="abstract">
+              <font color="000093"><b>Abstract</b></font>
+            </h2>
+            <p style="text-align: justify">
+              <font color="061E61">
+                Despite breakthroughs in fixed-length audio generation, studies on
+                variable-length audio generation remain underexplored, primarily
+                due to two fundamental impediments. First, existing audio captioning
+                datasets typically pair fixed-length audio with context-invariant
+                captions, failing to capture the semantic dynamics of long-form
+                audio sequences. Second, contemporary audio diffusion models
+                are constrained by fixed-resolution audio latent representations,
+                which limits generation to a pre-defined duration. In this work, we
+                endeavor to fill in these research gaps to some extent. First, we establish
+                a fine-grained benchmark dataset for <b>VA</b>riable-<b>L</b>ength <b>A</b>udio
+                <b>G</b>eneration, namely <b>VaLAG-Bench</b>. It consists of 6,722 audio samples
+                of 25.9 to 60.4 seconds duration, coupled with 143,343 captions
+                annotated by human contributors and Large Audio-Language Models.
+                Moreover, it comprises manually verified sound event timestamps
+                to accurately describe semantic variations in long-form audio.
+                Second, a novel autoregressive diffusion method for variable-length
+                generation, <b>VaLAG-Model</b> is proposed. It advocates a next-block
+                prediction approach to achieve fine-grained semantic control of output
+                samples. Furthermore, additional Query-Gating mechanisms
+                and Low-Rank Adaptation techniques are incorporated to enable
+                variable-length generation capabilities without compromising fixedlength
+                generation performance. Experimental results on two audio
+                generation benchmarks, AudioCaps and Clotho, in conjunction
+                with our VaLAG-Bench, demonstrate that our VaLAG-Model significantly
+                outperforms its counterparts in variable-length generation,
+                while achieving comparable performance to state-of-the-art approaches
+                in fixed-length generation. To facilitate the efforts of the
+                academic community, VaLAG-Bench and VaLAG-Model are publicly
+                available.
+              </font>
+            </p>
+            <p>
+              <br />
+            </p>
+            <h2 id="abstract">
+              <font color="000093"><b>Contribution</b></font>
+            </h2>
+            <p style="text-align: justify">
+              <font color="061E61">
+              <ul>
+                We introduce VaLAG-Bench, the first fine-grained benchmark
+                for the variable-length audio generation task. It comprises
+                6,722 audio clips ranging from 25.9 to 60.4 seconds, accompanied
+                by manually verified timestamps of 100 distinct
+                sound event categories. Based on these audio samples and
+                annotations, 143,343 fine-grained captions were generated
+                by humans and Large Audio-Language Models, which provide
+                detailed descriptions of the semantic evolution within
+                long-form audio.
+              </ul>
+              <ul>
+                A novel autoregressive diffusion method, VaLAG-Model,
+                is proposed in this paper. VaLAG-Model partitions fixedshape
+                audio features into blocks and deploys a next-block
+                prediction strategy to generate audio of arbitrary lengths.
+                Moreover, it incorporates an innovative Query-Gating mechanism
+                and Low-Rank Adaptation techniques, achieving
+                variable-length generation capabilities without compromising
+                its performance on fixed-length generation.
+              </ul>
+              <ul>
+                Extensive experiments conducted on two widely used audio
+                generation benchmarks, AudioCaps and Clotho,
+                in conjunction with our VaLAG-Bench, demonstrate that
+                VaLAG-Model significantly outperforms its competitors in
+                terms of variable-length audio generation, while achieving
+                competitive performance comparable to SOTA approaches
+                in fixed-length audio generation.
+              </ul>
+              </font>
+            </p>
+
+
+            <p>
+              <br />
+            </p>
+
+            <h2 id="abstract">
+              <font color="000093"><b>VaLAG-Bench: A Fine-Grained Benchmark for Semantic Variations in Long-Form Audio</b></font>
+            </h2>
+            
+            <p style="text-align: justify">
+              <font color="061E61">
+                To facilitate the study of variable-length audio generation, we establish
+                a new benchmark dataset, namely <b>VaLAG-Bench</b>. This dataset
+                is composed of 6,722 audio samples, with a duration ranging from
+                25.9 to 60.4 seconds. These samples have been manually verified,
+                with fine-grained timestamps indicating the start and end times of
+                100 sound event categories. Furthermore, VaLAG-Bench comprises
+                143,343 textual captions, which are generated by human volunteers
+                and the Large Audio-Language Model (LALM), providing detailed
+                descriptions of semantic changes occurring within long-form audio.
+              </font>
+            </p>
+
+            <table
+              class="table"
+              align="center"
+              style="table-layout: fixed; word-break: break-word; width: 100%; border-collapse: collapse; margin-left: 0;"
+            >
+              <tbody>
+                <tr>
+                  <td style="width: 30%; vertical-align: middle;">
+                    <video controls="controls" style="width: 100%; max-width: 480px;">
+                      <source src="./example/video/1.mp4" type="audio/wav" />
+                      Your browser does not support the video element.
+                    </video>
+                  </td>
+                  <td style="width: 50%; vertical-align: top; padding-top: 0;">
+                    <table class="table" style="margin-top: 20; margin-bottom: 0; width: 100%; border-top: none; border-collapse: collapse;">
+                      <tr>
+                        <td style="font-size: 18px; border-top: none; padding-top: 0;">
+                          <strong>Timestamps:</strong>
+                          <ul style="margin: 8px 0 0 20px; padding: 0;">
+                            <li>train wheels squealing: [0, 3.0], [25.8, 27.8]</li>
+                            <li>wind noise: [14.1, 30.0]</li>
+                            <li>train wheels squealing: [0, 30.0]</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="font-size: 18px;">
+                          <strong>Captions:</strong>
+                          <ul style="margin: 8px 0 0 20px; padding: 0;">
+                            <li>[0-10s] A train approaches with a blaring horn, then the grinding and rumbling of its wheels dominate the scene.</li>
+                            <li>[10-20s] A train rushes past, its wheels squealing sharply before wind noise takes over.</li>
+                            <li>[20-30s] The wind howls while wheels grind, followed by a resonant train horn.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="font-size: 18px;">"-ntbsw9IoAU.mp4"</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <p>
+              <b>
+                <font color="000093">VaLAG-Model: An Autoregressive Diffusion Method for Variable-Length Audio Generation</font>
+              </b>
+            </p>
+
+            <p style="text-align: justify">
+              <font color="061E61">
+                As demonstrated in Fig. 1, our proposed <b>VaLAG-Model</b> is founded
+                on a latent diffusion architecture comprising an audio variation autoencoder
+                (VAE) for compressing and decompressing audio features,
+                a text encoder for processing text descriptions, a variant of Diffusion
+                Transformer (DiT) for performing the denoising process,
+                and an audio vocoder for restoring denoised audio features to waveforms.
+                In order to furnish the model with the capacity to generate
+                audio of variable length, audio features are segmented into blocks,
+                whilst an autoregressive block-based prediction strategy is adopted.
+                In detail, previously denoised audio blocks are utilized as supplementary
+                conditions to guide the denoising process of the current
+                block, ensuring coherence between audio contexts. Furthermore,
+                additional Query-Gating mechanisms and Low-Rank Adaptation
+               techniques are incorporated, allowing the model to acquire
+                variable-length generation capabilities without compromising its
+                fixed-length generation performance.
+              </font>
+            </p>
+
+            <figure>
+              <img src="./method.png" alt="Model Architecture" style="width: 100%; max-width: 1600px; display: block; margin-left: auto; margin-right: auto;" />
+              <figcaption style="text-align: center; font-size: 18px; color: #061E61;">
+                Figure 1: The overview of the VaLAG-Model architecture. VaLAG-Model employs an iterative block-wise denoising procedure to synthesize variable-length audio, with the assistance of causal attention and a Query-Gating mechanism.
+              </figcaption>
+            </figure>
+            <p>
+              <br />
+            </p>
+            
+
+            <h2 id="abstract">
+              <font color="000093"><b>Comparative Samples: Fixed-Length Audio Generation</b></font>
+            </h2>
+
+            <table
+              class="table comparison-table"
+              align="center"
+              style="word-break: break-word; margin-left: 0;"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    Text Description / Dataset Metadata
+                  </th>
+                  <th style="font-size: 18px;">AudioLDM 2</th>
+                  <th style="font-size: 18px;">Tango 2</th>
+                  <th style="font-size: 18px;">Stable Audio Open</th>
+                  <th style="font-size: 18px;">GenAU</th>
+                  <th style="font-size: 18px;">VaLAG-Model (Ours)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      A click is followed by a woman speaking and then a sewing machine stitching.
+                    </span>
+                    <span class="desc-meta">Source: AudioCaps | "xpZna_FwDhI_70.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/ldm/1.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/tango/1.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/sao/1.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/genau/1.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/valag/1.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      Insects buzzing as wind blows into a microphone and birds chirp in the background.
+                    </span>
+                    <span class="desc-meta">Source: AudioCaps | "YqYCDis3EUA_30.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/ldm/2.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/tango/2.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/sao/2.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/genau/2.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/valag/2.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      Violins and accordion being played somewhat off key.
+                    </span>
+                    <span class="desc-meta">Source: Clotho | "Playing organ with an open window.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/ldm/3.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/tango/3.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/sao/3.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/genau/3.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/valag/3.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      A warning signal going off, then a train goes past, then just the signal again.
+                    </span>
+                    <span class="desc-meta">Source: Clotho | "Railroad Crossing Japan.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/ldm/4.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/tango/4.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/sao/4.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/genau/4.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/valag/4.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      Rain is pouring hard on the patio roof outside.
+                    </span>
+                    <span class="desc-meta">Source: Clotho | "Rain Loop with Low-Cut Filter.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/ldm/5.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/tango/5.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/sao/5.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/fixed/genau/5.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/fixed/valag/5.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p>
+              <br />
+            </p>
+
+            <h2 id="abstract">
+              <font color="000093"><b>Comparative Samples: Variable-Length Audio Generation</b></font>
+            </h2>
+
+
+            <table
+              class="table comparison-table"
+              align="center"
+              style="word-break: break-word; margin-left: 0;"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    Text Description / Dataset Metadata
+                  </th>
+                  <th style="font-size: 18px;">Ground Truth</th>
+                  <th style="font-size: 18px;">AudioLDM</th>
+                  <th style="font-size: 18px;">TangoFlux </th>
+                  <th style="font-size: 18px;">Stable Audio Open</th>
+                  <th style="font-size: 18px;">VaLAG-Model (Ours)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      ["A child is singing.", "A child is singing.", "A child is speaking and singing.", "A child is singing and someone is laughing.", "A child is singing and someone is laughing.", "A child is singing."]
+                    </span>
+                    <span class="desc-meta">Source: VaLAG-Bench | "1yKGjTOk7NY.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/gt/1.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/ldm/1.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/tango/1.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/sao/1.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/valag/1.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      ["The ship was sailing on the sea, creating sea waves and the wind was blowing loudly.", "The ship was sailing on the sea, creating sea waves and the wind was blowing loudly.", "The ship was sailing on the sea, creating sea waves and the wind was blowing loudly.", "The ship was sailing on the sea, creating sea waves and the wind was blowing loudly.", "The ship was sailing on the sea, creating sea waves and the wind was blowing loudly."]
+                    </span>
+                    <span class="desc-meta">Source: VaLAG-Bench | "AgL91l_DkRs.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/gt/2.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/ldm/2.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/tango/2.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/sao/2.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/valag/2.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      ["A man is giving a speech.", "A man is giving a speech.", "A man is giving a speech.", "A man is giving a speech.", "A man is giving a speech.", "A man is giving a speech."]
+                    </span>
+                    <span class="desc-meta">Source: VaLAG-Bench | "-BLQ7_I4BhI"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/gt/3.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/ldm/3.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/tango/3.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/sao/3.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/valag/3.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="desc-cell">
+                    <span class="desc-main">
+                      ["A person is eating, with the sounds of chewing and swallowing.", "A person is eating, with the sounds of chewing and swallowing.", "A person is eating, with the sounds of chewing and swallowing.", "A person is eating, with the sounds of chewing and swallowing.", "A person is eating, with the sounds of chewing and swallowing.", "A person is slurping."]
+                    </span>
+                    <span class="desc-meta">Source: VaLAG-Bench | "o9Fiss83B1c.wav"</span>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/gt/4.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/ldm/4.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/tango/4.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source src="./example/variable/sao/4.wav" type="audio/wav" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                  <td>
+                    <audio controls="controls" style="width: 150px;">
+                      <source
+                        src="./example/variable/valag/4.wav"
+                        type="audio/wav"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                  </td>
+                </tr>
+            
+
+              </tbody>
+            </table>
+
+            Page updated on April 2026.
+
+
+
+          </section>
+        </article>
+      </main>
     </div>
-  </div>
-</section>
+  </font>
 
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i["GoogleAnalyticsObject"] = r;
+      (i[r] =
+        i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        }),
+        (i[r].l = 1 * new Date());
+      (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m);
+    })(
+      window,
+      document,
+      "script",
+      "//www.google-analytics.com/analytics.js",
+      "ga"
+    );
+    ga("create", "UA-139981676-1", "auto");
+    ga("send", "pageview");
+  </script>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
 
-  </body>
-  </html>
+  <script>
+    (function () {
+      function parseDescriptionList(text) {
+        var normalized = String(text || "").trim();
+        if (!(normalized.startsWith("[") && normalized.endsWith("]"))) {
+          return null;
+        }
+
+        try {
+          var parsed = JSON.parse(normalized);
+          if (!Array.isArray(parsed)) {
+            return null;
+          }
+
+          var items = parsed
+            .map(function (item) {
+              return String(item || "").trim();
+            })
+            .filter(Boolean);
+
+          return items.length > 1 ? items : null;
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function buildCompactDescription(descMain, items) {
+        var currentIndex = 0;
+
+        descMain.classList.add("is-compact");
+        descMain.textContent = "";
+
+        var box = document.createElement("div");
+        box.className = "desc-compact";
+
+        var textEl = document.createElement("span");
+        textEl.className = "desc-compact-text";
+
+        var controls = document.createElement("div");
+        controls.className = "desc-compact-controls";
+
+        var prevBtn = document.createElement("button");
+        prevBtn.type = "button";
+        prevBtn.className = "desc-control-btn";
+        prevBtn.textContent = "<";
+
+        var nextBtn = document.createElement("button");
+        nextBtn.type = "button";
+        nextBtn.className = "desc-control-btn";
+        nextBtn.textContent = ">";
+
+        var indexEl = document.createElement("span");
+        indexEl.className = "desc-index";
+
+        var selectEl = document.createElement("select");
+        selectEl.className = "desc-select";
+
+        items.forEach(function (_item, idx) {
+          var option = document.createElement("option");
+          option.value = String(idx);
+          var startSec = idx * 10;
+          var endSec = (idx + 1) * 10;
+          option.textContent = startSec + "-" + endSec + "s";
+          selectEl.appendChild(option);
+        });
+
+        function render(index) {
+          currentIndex = (index + items.length) % items.length;
+          textEl.textContent = items[currentIndex];
+          indexEl.textContent = "(" + (currentIndex + 1) + "/" + items.length + ")";
+          selectEl.value = String(currentIndex);
+        }
+
+        prevBtn.addEventListener("click", function () {
+          render(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener("click", function () {
+          render(currentIndex + 1);
+        });
+
+        selectEl.addEventListener("change", function () {
+          render(Number(selectEl.value));
+        });
+
+        controls.appendChild(prevBtn);
+        controls.appendChild(nextBtn);
+        controls.appendChild(indexEl);
+        controls.appendChild(selectEl);
+
+        box.appendChild(textEl);
+        box.appendChild(controls);
+        descMain.appendChild(box);
+
+        render(0);
+      }
+
+      var descriptionNodes = document.querySelectorAll(
+        ".comparison-table .desc-main"
+      );
+      descriptionNodes.forEach(function (descMain) {
+        var items = parseDescriptionList(descMain.textContent);
+        if (items) {
+          buildCompactDescription(descMain, items);
+        }
+      });
+
+      function formatDuration(seconds) {
+        if (!Number.isFinite(seconds) || seconds <= 0) {
+          return "-- s";
+        }
+
+        return seconds.toFixed(2) + " s";
+      }
+
+      var mediaElements = document.querySelectorAll("audio, video");
+
+      mediaElements.forEach(function (media) {
+        media.preload = "metadata";
+
+        var durationEl = document.createElement("span");
+        durationEl.className = "media-duration";
+        durationEl.textContent = "Duration: loading...";
+        media.insertAdjacentElement("afterend", durationEl);
+
+        function updateDuration() {
+          durationEl.textContent = "Duration: " + formatDuration(media.duration);
+        }
+
+        media.addEventListener("loadedmetadata", updateDuration);
+        media.addEventListener("durationchange", updateDuration);
+
+        if (media.readyState >= 1) {
+          updateDuration();
+        }
+      });
+    })();
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        HTML: ["input/TeX","output/HTML-CSS"],
+        TeX: {
+               Macros: {
+                        bm: ["\\boldsymbol{#1}", 1],
+                        argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                        argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+               extensions: ["AMSmath.js","AMSsymbols.js"],
+               equationNumbers: { autoNumber: "AMS" } },
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                   displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                   processEscapes: true },
+        "HTML-CSS": { availableFonts: ["TeX"],
+                      linebreaks: { automatic: true } }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script
+    type="text/javascript"
+    async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"
+  ></script>
+</html>
