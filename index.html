@@ -1018,6 +1018,25 @@
         return seconds.toFixed(2) + " s";
       }
 
+      function getBestKnownDuration(media) {
+        if (Number.isFinite(media.duration) && media.duration > 0) {
+          return media.duration;
+        }
+
+        if (media.seekable && media.seekable.length > 0) {
+          var seekableEnd = media.seekable.end(media.seekable.length - 1);
+          if (Number.isFinite(seekableEnd) && seekableEnd > 0) {
+            return seekableEnd;
+          }
+        }
+
+        if (media.ended && Number.isFinite(media.currentTime) && media.currentTime > 0) {
+          return media.currentTime;
+        }
+
+        return NaN;
+      }
+
       var mediaElements = document.querySelectorAll("audio, video");
 
       mediaElements.forEach(function (media) {
@@ -1029,36 +1048,107 @@
         media.insertAdjacentElement("afterend", durationEl);
 
         var pollTimer = null;
+        var fallbackTimer = null;
+        var hasFinalDuration = false;
 
         function isDurationReady() {
-          return Number.isFinite(media.duration) && media.duration > 0;
+          return Number.isFinite(getBestKnownDuration(media));
         }
 
-        function stopPolling() {
+        function stopTimers() {
           if (pollTimer !== null) {
             clearInterval(pollTimer);
             pollTimer = null;
           }
+
+          if (fallbackTimer !== null) {
+            clearTimeout(fallbackTimer);
+            fallbackTimer = null;
+          }
+        }
+
+        function tryProbeDurationBySeek() {
+          if (hasFinalDuration) {
+            return;
+          }
+
+          if (Number.isFinite(media.duration) && media.duration !== Infinity) {
+            return;
+          }
+
+          if (!media.seekable || media.seekable.length === 0) {
+            return;
+          }
+
+          var originalTime = media.currentTime || 0;
+          var restored = false;
+
+          function restoreTime() {
+            if (restored) {
+              return;
+            }
+
+            restored = true;
+            try {
+              media.currentTime = originalTime;
+            } catch (_error) {
+              // Ignore restore failure on non-seekable hosts.
+            }
+          }
+
+          function onProbeUpdate() {
+            updateDuration();
+            restoreTime();
+            media.removeEventListener("timeupdate", onProbeUpdate);
+          }
+
+          media.addEventListener("timeupdate", onProbeUpdate);
+
+          try {
+            media.currentTime = Number.MAX_SAFE_INTEGER;
+          } catch (_error) {
+            media.removeEventListener("timeupdate", onProbeUpdate);
+            restoreTime();
+          }
         }
 
         function updateDuration() {
-          if (isDurationReady()) {
-            durationEl.textContent = "Duration: " + formatDuration(media.duration);
-            stopPolling();
+          var bestDuration = getBestKnownDuration(media);
+          if (Number.isFinite(bestDuration) && bestDuration > 0) {
+            durationEl.textContent = "Duration: " + formatDuration(bestDuration);
+            hasFinalDuration = true;
+            stopTimers();
           } else {
             durationEl.textContent = "Duration: loading";
           }
         }
 
-        media.addEventListener("loadedmetadata", updateDuration);
+        media.addEventListener("loadedmetadata", function () {
+          updateDuration();
+          tryProbeDurationBySeek();
+        });
         media.addEventListener("durationchange", updateDuration);
+        media.addEventListener("loadeddata", updateDuration);
+        media.addEventListener("canplay", updateDuration);
+        media.addEventListener("canplaythrough", updateDuration);
+        media.addEventListener("progress", updateDuration);
+        media.addEventListener("timeupdate", updateDuration);
+        media.addEventListener("ended", updateDuration);
 
         pollTimer = setInterval(function () {
           updateDuration();
         }, 1000);
 
+        fallbackTimer = setTimeout(function () {
+          if (!hasFinalDuration && !isDurationReady()) {
+            durationEl.textContent = "Duration: unavailable (host metadata blocked)";
+            stopTimers();
+          }
+        }, 15000);
+
         if (media.readyState >= 1) {
           updateDuration();
+          tryProbeDurationBySeek();
         } else {
           durationEl.textContent = "Duration: loading";
         }
